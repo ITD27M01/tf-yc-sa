@@ -17,5 +17,5 @@ variable "folder_id" {
 variable "sa_roles" {
   description = "Service Account Name"
   type        = set(string)
-  default     = toset(["editor"])
+  default     = ["editor"]
 }
