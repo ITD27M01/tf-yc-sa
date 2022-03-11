@@ -21,3 +21,13 @@ resource "yandex_iam_service_account_api_key" "sa-api-key" {
   service_account_id = yandex_iam_service_account.this.id
   description        = "api key for authorization"
 }
+
+resource "yandex_iam_service_account_api_key" "sa-api-key" {
+  service_account_id = yandex_iam_service_account.this.id
+  description        = "api key for authorization"
+}
+
+resource "yandex_iam_service_account_static_access_key" "sa-static-key" {
+  service_account_id = yandex_iam_service_account.this.id
+  description        = "static access key for object storage"
+}
