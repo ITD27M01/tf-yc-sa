@@ -6,6 +6,7 @@ variable "sa_name" {
 variable "sa_description" {
   description = "Service Account Description"
   type        = string
+  default     = null
 }
 
 variable "folder_id" {
