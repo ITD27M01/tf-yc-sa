@@ -12,5 +12,10 @@ variable "sa_description" {
 variable "folder_id" {
   description = "Folder id (default to provider config)"
   type        = string
-  default     = null
+}
+
+variable "sa_roles" {
+  description = "Service Account Name"
+  type        = set(string)
+  default     = toset(["editor"])
 }
