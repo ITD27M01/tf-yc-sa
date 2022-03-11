@@ -26,3 +26,8 @@ resource "yandex_iam_service_account_static_access_key" "sa-static-key" {
   service_account_id = yandex_iam_service_account.this.id
   description        = "static access key for object storage"
 }
+
+resource "yandex_iam_service_account_key" "sa-auth-key" {
+  service_account_id = yandex_iam_service_account.this.id
+  description        = "json key for service account"
+}
