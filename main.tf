@@ -5,12 +5,22 @@ resource "yandex_iam_service_account" "this" {
   folder_id = var.folder_id
 }
 
+resource "yandex_resourcemanager_folder_iam_binding" "this" {
+  folder_id = var.folder_id
+
+  role = var.sa_default_role
+
+  members = [
+    "serviceAccount:${yandex_iam_service_account.this.id}",
+  ]
+}
+
 resource "yandex_resourcemanager_folder_iam_binding" "sa-folder-binding" {
   for_each = var.sa_folder_roles
 
-  folder_id = var.folder_id
+  folder_id = each.key
 
-  role = each.key
+  role = each.value
 
   members = [
     "serviceAccount:${yandex_iam_service_account.this.id}",
@@ -20,9 +30,9 @@ resource "yandex_resourcemanager_folder_iam_binding" "sa-folder-binding" {
 resource "yandex_resourcemanager_cloud_iam_binding" "sa-cloud-binding" {
   for_each = var.sa_cloud_roles
 
-  cloud_id = var.cloud_id
+  cloud_id = each.key
 
-  role = each.key
+  role = each.value
 
   members = [
     "serviceAccount:${yandex_iam_service_account.this.id}",
