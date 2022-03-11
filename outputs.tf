@@ -22,6 +22,6 @@ output "sa_secret_key" {
 
 output "sa_json_key" {
   description = "Service Account Key"
-  value       = yandex_iam_service_account_key.sa-auth-key
+  value       = jsonencode(yandex_iam_service_account_key.sa-auth-key)
   sensitive   = true
 }
