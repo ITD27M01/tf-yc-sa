@@ -23,10 +23,10 @@ variable "sa_name" {
   type        = string
 }
 
-variable "sa_default_role" {
+variable "sa_roles" {
   description = "Service Account default folder role"
-  type        = string
-  default     = "editor"
+  type        = set(string)
+  default     = ["editor"]
 }
 
 variable "sa_description" {

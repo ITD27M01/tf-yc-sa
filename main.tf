@@ -6,9 +6,11 @@ resource "yandex_iam_service_account" "this" {
 }
 
 resource "yandex_resourcemanager_folder_iam_binding" "this" {
+  for_each = var.sa_roles
+
   folder_id = var.folder_id
 
-  role = var.sa_default_role
+  role = each.key
 
   members = [
     "serviceAccount:${yandex_iam_service_account.this.id}",
